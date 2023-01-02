@@ -9,20 +9,21 @@ export default async function (req, res) {
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: generatePrompt(req.body.recipe),
-    temperature: 0.6,
+    temperature: 0.4,
+    max_tokens: 2048,
   });
   res.status(200).json({ result: completion.data.choices[0].text });
 }
 
 function generatePrompt(recipe) {
-  const capitalizedRecipe =
-    recipe[0].toUpperCase() + recipe.slice(1).toLowerCase();
-  return `Suggest three names for an animal that is a superhero.
+  return `Generate a recipe from a recipe idea in the following format.
 
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
-Animal: ${capitalizedRecipe}
-Names:`;
+  Recipe Idea:
+  Recipe Name:
+  Serving Size:
+  Preparation Time:
+  Ingredients:
+  Instructions:
+  Recipe Idea: ${recipe}
+  Recipe Name:`;
 }
