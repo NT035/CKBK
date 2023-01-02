@@ -16,14 +16,14 @@ export default async function (req, res) {
 }
 
 function generatePrompt(recipe) {
-  return `Generate a recipe from a recipe idea in the following format.
-
-  Recipe Idea:
-  Recipe Name:
+  return `Generate a recipe from a recipe idea in the following format;
+  Name:
   Serving Size:
   Preparation Time:
   Ingredients:
   Instructions:
+
   Recipe Idea: ${recipe}
-  Recipe Name:`;
+  Name: `
+  ;
 }
