@@ -1,0 +1,32 @@
+import Head from "next/head";
+import { useState } from "react";
+import styles from "./index.module.css";
+import Recipe from "../components/Recipe/recipe";
+
+export default function Home() {
+  
+  return (
+    <div>
+      <Head>
+        <title>CKBK - AI Recipe Generator</title>
+        <link rel="icon" href="/chef.png" />
+      </Head>
+
+      <main className={styles.main}>
+        <img src="/chef.png" className={styles.icon} />
+        <h3>Enter a recipe idea</h3>
+        <form onSubmit={onSubmit}>
+          <input
+            type="text"
+            name="recipe"
+            placeholder="i.e. Chinese recipe with daikon, easy Asian snack recipe"
+            value={recipeInput}
+            onChange={(e) => setRecipeInput(e.target.value)}
+          />
+          <input type="submit" value="Generate recipe" />
+        </form>
+        <div className={styles.result}><Recipe text={result}></Recipe></div>
+      </main>
+    </div>
+  );
+}
