@@ -1,2 +1,2 @@
-# NT-035
-AI for Note Taking 📝 and Study Guide Making 📔
+# ckbk
+AI for Recipe Making 📝
