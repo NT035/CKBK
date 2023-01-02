@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
+import Recipe from "../components/Recipe/recipe";
 
 export default function Home() {
   const [recipeInput, setRecipeInput] = useState("");
@@ -40,7 +41,7 @@ export default function Home() {
           />
           <input type="submit" value="Generate recipe" />
         </form>
-        <div className={styles.result}>{result}</div>
+        <div className={styles.result}><Recipe text={result}></Recipe></div>
       </main>
     </div>
   );
