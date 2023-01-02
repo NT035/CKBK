@@ -2,7 +2,7 @@ import { React } from 'react';
 
 function parseComponents(text) {
   console.log(text)
-  var split_text = text.split("Serving Size:")
+  let split_text = text.split("Serving Size:")
   console.log(split_text)
   let rn = split_text[0]
   split_text = split_text[1].split("Preparation Time:")
@@ -11,7 +11,7 @@ function parseComponents(text) {
   let pt = split_text[0]
   split_text = split_text[1].split("Instructions:")
   let ing = split_text[0]
-  let ins = split_text[1].split("\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\. ")
+  let ins = split_text[1].split(/\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\./)
 
   return {
     RecipeName: rn,

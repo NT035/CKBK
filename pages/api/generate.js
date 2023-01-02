@@ -20,6 +20,7 @@ function generatePrompt(recipe) {
 
   Recipe Idea:
   Recipe Name:
+  Serving Size:
   Preparation Time:
   Ingredients:
   Instructions:
