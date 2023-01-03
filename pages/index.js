@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
 import RecipeCard from "../components/Recipe/RecipeCard";
+import Button from "../components/Button/Button";
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 
@@ -36,7 +37,7 @@ export default function Home() {
         <link rel="icon" href="/chef.png" />
       </Head>
 
-      <p><a href="/api/auth/logout">Logout</a></p>
+      <p><Button href="/api/auth/logout" text="Logout" /></p>
 
       <main className={styles.main}>
         <img src="/chef.png" className={styles.icon} />
@@ -62,6 +63,6 @@ export default function Home() {
       <title>CKBK - AI Recipe Generator</title>
       <link rel="icon" href="/chef.png" />
     </Head>
-    <a href="/api/auth/login">Login</a>
+    <Button href="/api/auth/login" text="Login" />
   </div>);
 }
