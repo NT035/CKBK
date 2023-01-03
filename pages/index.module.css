@@ -73,3 +73,11 @@
   font-weight: bold;
   margin-top: 40px;
 }
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20vh;
+}

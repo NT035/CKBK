@@ -63,6 +63,12 @@ export default function Home() {
       <title>CKBK - AI Recipe Generator</title>
       <link rel="icon" href="/chef.png" />
     </Head>
-    <Button href="/api/auth/login" text="Login" />
+    <div className={styles.mainContainer}>
+      <main className={styles.main}>
+        <img src="/chef.png" className={styles.icon} />
+        <h3>CKBK - AI Recipe Generator</h3>
+      </main>
+      <Button href="/api/auth/login" text="Login" />
+    </div>
   </div>);
 }
