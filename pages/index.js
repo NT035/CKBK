@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
-import Recipe from "../components/Recipe/recipe";
 import RecipeCard from "../components/Recipe/RecipeCard";
 import { useUser } from '@auth0/nextjs-auth0/client';
 
