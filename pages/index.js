@@ -2,10 +2,13 @@ import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
 import RecipeCard from "../components/Recipe/RecipeCard";
+import { useUser } from '@auth0/nextjs-auth0/client';
+
 
 export default function Home() {
   const [recipeInput, setRecipeInput] = useState("");
   const [result, setResult] = useState();
+  const { user, error, isLoading } = useUser();
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -21,12 +24,19 @@ export default function Home() {
     setRecipeInput("");
   }
 
-  return (
-    <div>
+  if (isLoading) return <div>...Loading</div>;
+
+  if (error) return <div>{error.message}</div>;
+
+  if (user) {
+    console.log(user);
+    return (<div>
       <Head>
         <title>CKBK - AI Recipe Generator</title>
         <link rel="icon" href="/chef.png" />
       </Head>
+
+      <p><a href="/api/auth/logout">Logout</a></p>
 
       <main className={styles.main}>
         <img src="/chef.png" className={styles.icon} />
@@ -44,5 +54,14 @@ export default function Home() {
         <div className={styles.result}><RecipeCard text={result}></RecipeCard></div>
       </main>
     </div>
-  );
+    );
+  }
+
+  return (<div>
+    <Head>
+      <title>CKBK - AI Recipe Generator</title>
+      <link rel="icon" href="/chef.png" />
+    </Head>
+    <a href="/api/auth/login">Login</a>
+  </div>);
 }
