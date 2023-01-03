@@ -2,7 +2,9 @@ import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
 import Recipe from "../components/Recipe/recipe";
+import RecipeCard from "../components/Recipe/RecipeCard";
 import { useUser } from '@auth0/nextjs-auth0/client';
+
 
 export default function Home() {
   const [recipeInput, setRecipeInput] = useState("");
@@ -50,7 +52,7 @@ export default function Home() {
           />
           <input type="submit" value="Generate recipe" />
         </form>
-        <div className={styles.result}><Recipe text={result}></Recipe></div>
+        <div className={styles.result}><RecipeCard text={result}></RecipeCard></div>
       </main>
     </div>
     );

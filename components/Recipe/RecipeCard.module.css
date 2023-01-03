@@ -1,0 +1,27 @@
+.recipeCardContainer {
+  margin: 1rem 10rem;
+  padding: 2rem;
+  border-radius: 2rem;
+  background-color: beige;
+}
+
+.recipeName {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1rem 0rem 0rem 0rem;
+}
+
+.recipeMetadata {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.recipeSubheader {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.listItem {
+  font-size: 1rem;
+  font-weight: normal;
+}
