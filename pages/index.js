@@ -37,7 +37,7 @@ export default function Home() {
         <link rel="icon" href="/chef.png" />
       </Head>
 
-      <p><Button href="/api/auth/logout" text="Logout" /></p>
+      <Button href="/api/auth/logout" text="Logout" />
 
       <main className={styles.main}>
         <img src="/chef.png" className={styles.icon} />
