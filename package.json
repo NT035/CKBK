@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.0.1",
+    "@aws-sdk/client-dynamodb": "^3.241.0",
     "debug": "^4.3.4",
     "next": "^12.1.6",
     "openai": "^3.1.0",
