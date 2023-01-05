@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 import RecipeCard from "../components/Recipe/RecipeCard";
 import Button from "../components/Button/Button";
 import { useUser } from '@auth0/nextjs-auth0/client';
+import React from "react";
 
 
 export default function Home() {
@@ -37,7 +38,7 @@ export default function Home() {
         <link rel="icon" href="/chef.png" />
       </Head>
 
-      <p><Button href="/api/auth/logout" text="Logout" /></p>
+      <Button href="/api/auth/logout" text="Logout" />
 
       <main className={styles.main}>
         <img src="/chef.png" className={styles.icon} />

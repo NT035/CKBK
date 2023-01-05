@@ -1,4 +1,5 @@
-import { DynamoDBClient, DynamoDBDocumentClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 
 const REGION = "us-west-2";
 const TABLE_NAME = "ckbk_users";
