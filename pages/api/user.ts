@@ -20,8 +20,14 @@ function makeGetParams(user_id: string) {
 }
 
 async function post(user: User, res) {
-  let params = makePostParams(user);
-  await ddbDocClient.send(new PutCommand(params));
+  let getParams = makeGetParams(user.user_id);
+  const result = await ddbDocClient.send(new GetCommand(getParams));
+  if (result.Item !== undefined && result.Item !== null) {
+    res.status(200).json("USER EXISTS");
+  }
+
+  let postParams = makePostParams(user);
+  await ddbDocClient.send(new PutCommand(postParams));
   res.status(200).json("SUCCESS");
 }
 
