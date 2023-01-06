@@ -2,18 +2,18 @@ import Head from "next/head";
 import React from "react";
 import { useState } from "react";
 import styles from "./index.module.css";
+import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
 
-export default function Home() {
+function Home() {
   const [userId, setUserId] = useState("default");
 
   async function onSubmitPost(event) {
     event.preventDefault();
-    const response = await fetch("/api/db/user", {
+    const response = await fetch("/api/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ user_id: userId }),
     });
     const data = await response.json();
     console.log(data)
@@ -21,12 +21,11 @@ export default function Home() {
 
   async function onSubmitGet(event) {
     event.preventDefault();
-    const response = await fetch("/api/db/user", {
+    const response = await fetch("/api/user", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ user_id: userId }),
     });
     const data = await response.json();
     console.log(data)
@@ -62,3 +61,5 @@ export default function Home() {
   </div>
   );
 }
+
+export default withPageAuthRequired(Home);
