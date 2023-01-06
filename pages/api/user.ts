@@ -34,6 +34,10 @@ async function get(user_id: string, res) {
 async function handler(req, res) {
   try {
     let sesh = await getSession(req, res);
+    if (sesh == null) {
+      throw new Error("User logged out");
+    }
+
     let user_id: string = sesh.user.sub;
 
     if (req.method == "POST") {
