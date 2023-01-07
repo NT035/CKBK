@@ -3,13 +3,13 @@ import { useState } from "react";
 import styles from "./index.module.css";
 import RecipeCard from "../components/Recipe/RecipeCard";
 import Button from "../components/Button/Button";
-import { useUser } from '@auth0/nextjs-auth0/client';
+import { useUser } from "@auth0/nextjs-auth0/client";
 import React from "react";
-
+import { Recipe, IGNORE } from "../interfaces/recipe";
 
 export default function Home() {
   const [recipeInput, setRecipeInput] = useState("");
-  const [result, setResult] = useState();
+  const [result, setResult] = useState<Recipe>(IGNORE);
   const { user, error, isLoading } = useUser();
 
   async function onSubmit(event) {
@@ -32,44 +32,49 @@ export default function Home() {
 
   if (user) {
     console.log(user);
-    return (<div>
+    return (
+      <div>
+        <Head>
+          <title>CKBK - AI Recipe Generator</title>
+          <link rel="icon" href="/chef.png" />
+        </Head>
+
+        <Button href="/api/auth/logout" text="Logout" />
+
+        <main className={styles.main}>
+          <img src="/chef.png" className={styles.icon} />
+          <h3>Enter a recipe idea</h3>
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              name="recipe"
+              placeholder="i.e. Chinese recipe with daikon, easy Asian snack recipe"
+              value={recipeInput}
+              onChange={(e) => setRecipeInput(e.target.value)}
+            />
+            <input type="submit" value="Generate recipe" />
+          </form>
+          <div className={styles.result}>
+            <RecipeCard {...result}></RecipeCard>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  return (
+    <div>
       <Head>
         <title>CKBK - AI Recipe Generator</title>
         <link rel="icon" href="/chef.png" />
       </Head>
-
-      <Button href="/api/auth/logout" text="Logout" />
-
-      <main className={styles.main}>
-        <img src="/chef.png" className={styles.icon} />
-        <h3>Enter a recipe idea</h3>
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="recipe"
-            placeholder="i.e. Chinese recipe with daikon, easy Asian snack recipe"
-            value={recipeInput}
-            onChange={(e) => setRecipeInput(e.target.value)}
-          />
-          <input type="submit" value="Generate recipe" />
-        </form>
-        <div className={styles.result}><RecipeCard text={result}></RecipeCard></div>
-      </main>
+      <div className={styles.mainContainer}>
+        <main className={styles.main}>
+          <img src="/chef.png" className={styles.icon} />
+          <h3>CKBK - AI Recipe Generator</h3>
+        </main>
+        <Button href="/api/auth/login" text="Login" />
+      </div>
     </div>
-    );
-  }
-
-  return (<div>
-    <Head>
-      <title>CKBK - AI Recipe Generator</title>
-      <link rel="icon" href="/chef.png" />
-    </Head>
-    <div className={styles.mainContainer}>
-      <main className={styles.main}>
-        <img src="/chef.png" className={styles.icon} />
-        <h3>CKBK - AI Recipe Generator</h3>
-      </main>
-      <Button href="/api/auth/login" text="Login" />
-    </div>
-  </div>);
+  );
 }
