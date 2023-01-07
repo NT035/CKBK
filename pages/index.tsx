@@ -5,7 +5,7 @@ import RecipeCard from "../components/Recipe/RecipeCard";
 import Button from "../components/Button/Button";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import React from "react";
-import { Recipe, IGNORE } from "../interfaces/recipe";
+import { Recipe, IGNORE, makeRecipeObject } from "../interfaces/recipe";
 
 export default function Home() {
   const [recipeInput, setRecipeInput] = useState("");
@@ -22,7 +22,8 @@ export default function Home() {
       body: JSON.stringify({ recipe: recipeInput }),
     });
     const data = await response.json();
-    setResult(data.result);
+    let recipe: Recipe = makeRecipeObject(data.result);
+    setResult(recipe);
     setRecipeInput("");
   }
 
@@ -31,7 +32,6 @@ export default function Home() {
   if (error) return <div>{error.message}</div>;
 
   if (user) {
-    console.log(user);
     return (
       <div>
         <Head>
