@@ -16,6 +16,17 @@ const DEFAULT: Recipe = {
   instructions: [],
 };
 
+export const IGNORE_ID = '__IGNORE__'
+
+export const IGNORE: Recipe = {
+  recipe_id: IGNORE_ID,
+  recipe_name: "default",
+  serving_size: "default",
+  prep_time: "default",
+  ingredients: [],
+  instructions: [],
+};
+
 export function makeRecipeObject(recipeText: string): Recipe {
   let split_text = recipeText.split("Serving Size:");
   let recipe_name = split_text[0];
