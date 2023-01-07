@@ -15,14 +15,18 @@ export default function RecipeCard(recipe: Recipe) {
         </p>
         <p className={styles.recipeSubheader}>Ingredients:</p>
         <ul>
-          {recipe.ingredients.map((line) => (
-            <li className={styles.listItem}>{line}</li>
+          {recipe.ingredients.map((line, index) => (
+            <li key={index} className={styles.listItem}>
+              {line}
+            </li>
           ))}
         </ul>
         <p className={styles.recipeSubheader}>Instructions:</p>
         <ol>
-          {recipe.instructions.map((line) => (
-            <li className={styles.listItem}>{line}</li>
+          {recipe.instructions.map((line, index) => (
+            <li key={index} className={styles.listItem}>
+              {line}
+            </li>
           ))}
         </ol>
       </div>
