@@ -6,14 +6,17 @@ import Button from "../components/Button/Button";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import React from "react";
 import { Recipe, IGNORE, makeRecipeObject } from "../interfaces/recipe";
+import { Oval, TailSpin, ThreeDots } from "react-loading-icons";
 
 export default function Home() {
   const [recipeInput, setRecipeInput] = useState("");
   const [result, setResult] = useState<Recipe>(IGNORE);
-  const { user, error, isLoading } = useUser();
+  const [recipeLoading, setRecipeLoading] = useState<boolean>();
+  const { user, error, isLoading: userLoading } = useUser();
 
   async function onSubmit(event) {
     event.preventDefault();
+    setRecipeLoading(true);
     const response = await fetch("/api/generate", {
       method: "POST",
       headers: {
@@ -24,14 +27,24 @@ export default function Home() {
     const data = await response.json();
     let recipe: Recipe = makeRecipeObject(data.result);
     setResult(recipe);
+    setRecipeLoading(false);
     setRecipeInput("");
   }
 
-  if (isLoading) return <div>...Loading</div>;
+  if (userLoading) return <div>...Loading</div>;
 
   if (error) return <div>{error.message}</div>;
 
   if (user) {
+    let recipeCardElement = <RecipeCard {...result}></RecipeCard>;
+    let loadingAnimation = (
+      <div>
+        <ThreeDots fill="#10a37f" />
+      </div>
+    );
+
+    let recipeSection = recipeLoading ? loadingAnimation : recipeCardElement;
+
     return (
       <div>
         <Head>
@@ -54,9 +67,7 @@ export default function Home() {
             />
             <input type="submit" value="Generate recipe" />
           </form>
-          <div className={styles.result}>
-            <RecipeCard {...result}></RecipeCard>
-          </div>
+          <div className={styles.result}>{recipeSection}</div>
         </main>
       </div>
     );
