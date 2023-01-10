@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export type Recipe = {
   recipe_id: string;
   recipe_name: string;
@@ -52,7 +54,7 @@ export function makeRecipeObject(recipeText: string): Recipe {
   instructions_list = final_ins;
 
   return {
-    recipe_id: "default",
+    recipe_id: uuidv4().stringify(),
     recipe_name: recipe_name,
     serving_size: serving_size,
     prep_time: prep_time,
