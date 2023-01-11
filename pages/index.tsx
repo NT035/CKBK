@@ -75,10 +75,6 @@ export default function Home() {
 
   return (
     <div>
-      <Head>
-        <title>CKBK - AI Recipe Generator</title>
-        <link rel="icon" href="/chef.png" />
-      </Head>
       <div className={styles.mainContainer}>
         <main className={styles.main}>
           <img src="/chef.png" className={styles.icon} />
