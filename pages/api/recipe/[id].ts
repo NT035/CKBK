@@ -23,6 +23,7 @@ async function recipeHandler(req: NextApiRequest, res: NextApiResponse) {
     console.error(error);
     res.status(error.status || 500).json({
       error: error,
+      message: error.message,
     });
   }
 }
