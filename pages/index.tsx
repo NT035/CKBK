@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
 import RecipeCard from "../components/Recipe/RecipeCard";
@@ -6,7 +5,7 @@ import Button from "../components/Button/Button";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import React from "react";
 import { Recipe, IGNORE, makeRecipeObject } from "../interfaces/recipe";
-import { Oval, TailSpin, ThreeDots } from "react-loading-icons";
+import { ThreeDots } from "react-loading-icons";
 
 export default function Home() {
   const [recipeInput, setRecipeInput] = useState("");
@@ -47,11 +46,6 @@ export default function Home() {
 
     return (
       <div>
-        <Head>
-          <title>CKBK - AI Recipe Generator</title>
-          <link rel="icon" href="/chef.png" />
-        </Head>
-
         <Button href="/api/auth/logout" text="Logout" />
 
         <main className={styles.main}>
