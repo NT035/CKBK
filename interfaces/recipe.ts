@@ -7,16 +7,16 @@ export type Recipe = {
   instructions: string[];
 };
 
-const DEFAULT: Recipe = {
+export const DEFAULT: Recipe = {
   recipe_id: "default",
   recipe_name: "default",
   serving_size: "default",
   prep_time: "default",
-  ingredients: [],
-  instructions: [],
+  ingredients: ["default"],
+  instructions: ["default"],
 };
 
-export const IGNORE_ID = '__IGNORE__'
+export const IGNORE_ID = "__IGNORE__";
 
 export const IGNORE: Recipe = {
   recipe_id: IGNORE_ID,
