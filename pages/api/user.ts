@@ -31,10 +31,15 @@ async function post(user: User, res) {
   res.status(200).json("SUCCESS");
 }
 
-async function get(user_id: string, res) {
+export async function getUserData(user_id: string): Promise<User> {
   let params = makeGetParams(user_id);
   const data = await ddbDocClient.send(new GetCommand(params));
-  res.status(200).json(data.Item);
+  return <User>data.Item;
+}
+
+async function get(user_id: string, res) {
+  const user = await getUserData(user_id);
+  res.status(200).json(user);
 }
 
 async function handler(req, res) {
@@ -58,6 +63,7 @@ async function handler(req, res) {
     console.error(error);
     res.status(error.status || 500).json({
       error: error,
+      message: error.message,
     });
   }
 }
