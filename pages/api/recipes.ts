@@ -1,12 +1,14 @@
 import { ddbDocClient, TABLE_NAME } from "../../db/db";
+import { makeUser, User } from "../../interfaces/user";
 import { makeRecipeObject, Recipe } from "../../interfaces/recipe";
 import { PutCommand, GetCommand } from "@aws-sdk/lib-dynamodb";
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
 
-function makePostParams(recipes: Recipe[]) {
+// TODO(t.lu): Update so that post param is recipes list not just user
+function makePostParams(user: User) {
   return {
     TableName: TABLE_NAME,
-    Item: recipes
+    Item: user
   };
 }
 
@@ -25,9 +27,9 @@ async function post(user: User, recipes: Recipe[], res) {
   if (result.Item !== undefined && result.Item !== null) {
     res.status(200).json("USER EXISTS");
   }
-  // need to get users object, update it, and re-post it
 
-  let postParams = makePostParams(recipes);
+  let updatedUser = makeUser(user.user_id, result.Item.recipe_list.concat(recipes))
+  let postParams = makePostParams(updatedUser);
   await ddbDocClient.send(new PutCommand(postParams));
   res.status(200).json("SUCCESS");
 }
@@ -38,7 +40,7 @@ async function get(user_id: string, res) {
   res.status(200).json(data.Item);
 }
 
-async function handler(req, res) {
+async function handler(req, res, recipes?) {
   try {
     let sesh = await getSession(req, res);
     if (sesh == null) {
@@ -49,7 +51,7 @@ async function handler(req, res) {
 
     if (req.method == "POST") {
       let user = makeUser(user_id, []);
-      post(user, res);
+      post(user, recipes, res);
     }
 
     if (req.method == "GET") {
