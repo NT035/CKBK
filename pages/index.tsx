@@ -23,7 +23,9 @@ export default function Home() {
       },
       body: JSON.stringify({ recipe: recipeInput }),
     });
+
     const data = await response.json();
+    console.log(data);
     let recipe: Recipe = makeRecipeObject(data.result);
     setResult(recipe);
     setRecipeLoading(false);

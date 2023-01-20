@@ -2,16 +2,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import RecipeCard from "../../components/Recipe/RecipeCard";
 import { Recipe } from "../../interfaces/recipe";
-
-const fetcher = async (url: string) => {
-  const res = await fetch(url);
-  const data = await res.json();
-
-  if (res.status !== 200) {
-    throw new Error(data.error);
-  }
-  return data;
-};
+import { fetcher } from "../../utils";
 
 export default function Person() {
   const { query } = useRouter();

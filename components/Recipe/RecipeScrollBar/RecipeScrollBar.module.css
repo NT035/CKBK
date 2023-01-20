@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* styles.css */
+.ScrollAreaRoot {
+  width: 100%;
+  height: 100%;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+}
+
+.ScrollAreaViewport {
+  width: 100%;
+  height: 100%;
+}
+
+.ScrollAreaScrollbar {
+  width: 4px;
+  padding: 5px 2px;
+}
+
+.ScrollAreaThumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+/* styles.css */
+.RecipeItem {
+  background-color: white;
+  border-radius: 10px;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+}
+
+.RecipeItem:hover {
+  background-color: rgba(80, 145, 79, .2);
+}

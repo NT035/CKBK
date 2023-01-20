@@ -1,0 +1,92 @@
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+.ScrollAreaRoot {
+  width: 200px;
+  height: 225px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px;
+  background-color: white;
+  --scrollbar-size: 10px;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+}
+
+.ScrollAreaViewport {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.ScrollAreaScrollbar {
+  display: flex;
+  /* ensures no selection */
+  user-select: none;
+  /* disable browser handling of all panning and zooming gestures on touch devices */
+  touch-action: none;
+  padding: 2px;
+  background: lightgray;
+  transition: background 160ms ease-out;
+}
+.ScrollAreaScrollbar:hover {
+  background: lightblue;
+}
+.ScrollAreaScrollbar[data-orientation='vertical'] {
+  width: var(--scrollbar-size);
+}
+.ScrollAreaScrollbar[data-orientation='horizontal'] {
+  flex-direction: column;
+  height: var(--scrollbar-size);
+}
+
+.ScrollAreaThumb {
+  flex: 1;
+  background: gray;
+  border-radius: var(--scrollbar-size);
+  position: relative;
+}
+/* increase target size for touch devices https://www.w3.org/WAI/WCAG21/Understanding/target-size.html */
+.ScrollAreaThumb::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.ScrollAreaCorner {
+  background: black;
+}
+
+.Text {
+  color: blue;
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
+.Tag {
+  color: darkgreen;
+  font-size: 13px;
+  line-height: 18px;
+  margin-top: 10px;
+  border-top: 1px solid darkgreen;
+  padding-top: 10px;
+}

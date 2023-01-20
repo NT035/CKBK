@@ -6,13 +6,17 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 export default async function (req, res) {
-  const completion = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: generatePrompt(req.body.recipe),
-    temperature: 0.2,
-    max_tokens: 2048,
-  });
-  res.status(200).json({ result: completion.data.choices[0].text });
+  try {
+    const completion = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: generatePrompt(req.body.recipe),
+      temperature: 0.2,
+      max_tokens: 2048,
+    });
+    res.status(200).json({ result: completion.data.choices[0].text });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
 }
 
 function generatePrompt(recipe) {
@@ -24,6 +28,5 @@ function generatePrompt(recipe) {
   Instructions:
 
   Recipe Idea: ${recipe}
-  Name: `
-    ;
+  Name: `;
 }
