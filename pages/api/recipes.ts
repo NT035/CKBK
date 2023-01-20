@@ -40,7 +40,7 @@ async function get(user_id: string, res) {
   res.status(200).json(data.Item);
 }
 
-async function handler(req, res, recipes?) {
+async function handler(req, res) {
   try {
     let sesh = await getSession(req, res);
     if (sesh == null) {
@@ -51,7 +51,7 @@ async function handler(req, res, recipes?) {
 
     if (req.method == "POST") {
       let user = makeUser(user_id, []);
-      post(user, recipes, res);
+      post(user, req.body.recipe_list, res);
     }
 
     if (req.method == "GET") {
