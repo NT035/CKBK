@@ -8,7 +8,7 @@ import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
 function makePostParams(user: User) {
   return {
     TableName: TABLE_NAME,
-    Item: user
+    Item: user,
   };
 }
 
@@ -28,7 +28,10 @@ async function post(user: User, recipes: Recipe[], res) {
     res.status(200).json("USER EXISTS");
   }
 
-  let updatedUser = makeUser(user.user_id, result.Item.recipe_list.concat(recipes))
+  let updatedUser = makeUser(
+    user.user_id,
+    result.Item.recipe_list.concat(recipes)
+  );
   let postParams = makePostParams(updatedUser);
   await ddbDocClient.send(new PutCommand(postParams));
   res.status(200).json("SUCCESS");
