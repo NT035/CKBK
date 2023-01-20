@@ -54,7 +54,7 @@ export function makeRecipeObject(recipeText: string): Recipe {
   instructions_list = final_ins;
 
   return {
-    recipe_id: uuidv4().stringify(),
+    recipe_id: uuidv4().toString(),
     recipe_name: recipe_name,
     serving_size: serving_size,
     prep_time: prep_time,
