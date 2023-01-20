@@ -9,7 +9,7 @@ export type Recipe = {
 
 export const DEFAULT: Recipe = {
   recipe_id: "default",
-  recipe_name: "default",
+  recipe_name: "default1111111u3240u134u13u40913u40931u043u103",
   serving_size: "default",
   prep_time: "default",
   ingredients: ["default"],
